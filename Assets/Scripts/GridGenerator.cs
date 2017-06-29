@@ -12,10 +12,18 @@ public class GridGenerator : MonoBehaviour
     public int maxZValue;
     private int currentXValue = 1;
     GameObject[,] gridSquares;
-    public int StartX = 0;
+
+    /*public int StartX = 0;
     public int StartY = 0;
     public int EndX = 9;
-    public int EndY = 9;
+    public int EndY = 9;*/
+
+        //This gives designers something to look at when they are doing things in the editor
+    [Tooltip("Where the starting point is")]
+    public Vector2 startingPoint = new Vector2(0,0);
+
+    [Tooltip("Where the ending point is")]
+    public Vector2 endingPoint = new Vector2(0, 0);
 
     // Use this for initialization
     void Start()
@@ -28,11 +36,11 @@ public class GridGenerator : MonoBehaviour
         {
             for (int j = 0; j < maxXValue; j++)
             {
-                if (j == StartX && i == StartY)
+                if (j == startingPoint.x && i == startingPoint.y)
                 {
                     gridSquares[j, i] = Instantiate(StartGridSquare, new Vector3(j * 1.1f, 0, i * 1.1f), Quaternion.identity);
                 }
-                else if (j == EndX && i == EndY)
+                else if (j == endingPoint.x && i == endingPoint.y)
                 {
                     gridSquares[j, i] = Instantiate(FinishGridSquare, new Vector3(j * 1.1f, 0, i * 1.1f), Quaternion.identity);
                 }
