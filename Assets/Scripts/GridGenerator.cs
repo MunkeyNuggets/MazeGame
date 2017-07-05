@@ -55,30 +55,20 @@ public class GridGenerator : MonoBehaviour
                     gridSquares[j, i] = Instantiate(StartGridSquare, new Vector3(j * 1, 0, i * 1), Quaternion.identity);
                     if (whatWallsExist[0] == true)
                     {
-                        wallTop = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z + .5f), Quaternion.Euler(0, 90, 0));
+                        wallTop = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z + .5f), Quaternion.Euler(0, 90, 0), gridSquares[j, i].transform);
                     }
                     if (whatWallsExist[1] == true)
                     {
-                        wallRight = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x + .5f, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z), Quaternion.Euler(0, 0, 0));
+                        wallRight = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x + .5f, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z), Quaternion.Euler(0, 0, 0), gridSquares[j, i].transform);
                     }
                     if (whatWallsExist[2] == true)
                     {
-                        wallBottom = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z - .5f), Quaternion.Euler(0, 90, 0));
+                        wallBottom = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z - .5f), Quaternion.Euler(0, 90, 0), gridSquares[j, i].transform);
                     }
                     if (whatWallsExist[3])
                     {
-                        wallLeft = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x - .5f, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z), Quaternion.Euler(0, 0, 0));
+                        wallLeft = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x - .5f, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z), Quaternion.Euler(0, 0, 0), gridSquares[j, i].transform);
                     }
-
-                    
-                   
-                   
-                    //Trying to set the parent of all he walls to the current grid square...
-
-                    //wallTop.transform.parent = StartGridSquare.transform;
-                    //wallRight.transform.parent = StartGridSquare.transform;
-                    //wallBottom.transform.parent = StartGridSquare.transform;
-                    //wallLeft.transform.parent = StartGridSquare.transform;
                 }
                 //checks if it has reached the desiered end position of the maze - This will change
                 else if (j == endingPoint.x && i == endingPoint.y)
@@ -86,25 +76,20 @@ public class GridGenerator : MonoBehaviour
                     gridSquares[j, i] = Instantiate(FinishGridSquare, new Vector3(j * 1, 0, i * 1), Quaternion.identity);
                     if (whatWallsExist[0] == true)
                     {
-                        wallTop = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z + .5f), Quaternion.Euler(0, 90, 0));
+                        wallTop = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z + .5f), Quaternion.Euler(0, 90, 0), gridSquares[j, i].transform);
                     }
                     if (whatWallsExist[1] == true)
                     {
-                        wallRight = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x + .5f, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z), Quaternion.Euler(0, 0, 0));
+                        wallRight = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x + .5f, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z), Quaternion.Euler(0, 0, 0), gridSquares[j, i].transform);
                     }
                     if (whatWallsExist[2] == true)
                     {
-                        wallBottom = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z - .5f), Quaternion.Euler(0, 90, 0));
+                        wallBottom = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z - .5f), Quaternion.Euler(0, 90, 0), gridSquares[j, i].transform);
                     }
                     if (whatWallsExist[3])
                     {
-                        wallLeft = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x - .5f, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z), Quaternion.Euler(0, 0, 0));
+                        wallLeft = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x - .5f, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z), Quaternion.Euler(0, 0, 0), gridSquares[j, i].transform);
                     }
-
-                    //wallTop.transform.parent = FinishGridSquare.transform;
-                    //wallRight.transform.parent = FinishGridSquare.transform;
-                    //wallBottom.transform.parent = FinishGridSquare.transform;
-                    //wallLeft.transform.parent = FinishGridSquare.transform;
                 }
                 else
                 {
@@ -112,29 +97,23 @@ public class GridGenerator : MonoBehaviour
                     gridSquares[j, i] = Instantiate(gridSquare, new Vector3(j * 1, 0, i * 1), Quaternion.identity);
                     if (whatWallsExist[0] == true)
                     {
-                        wallTop = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z + .5f), Quaternion.Euler(0, 90, 0));
+                        wallTop = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z + .5f), Quaternion.Euler(0, 90, 0), gridSquares[j, i].transform);
                     }
                     if (whatWallsExist[1] == true)
                     {
-                        wallRight = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x + .5f, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z), Quaternion.Euler(0, 0, 0));
+                        wallRight = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x + .5f, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z), Quaternion.Euler(0, 0, 0), gridSquares[j, i].transform);
                     }
                     if (whatWallsExist[2] == true)
                     {
-                        wallBottom = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z - .5f), Quaternion.Euler(0, 90, 0));
+                        wallBottom = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z - .5f), Quaternion.Euler(0, 90, 0), gridSquares[j, i].transform);
                     }
                     if (whatWallsExist[3])
                     {
-                        wallLeft = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x - .5f, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z), Quaternion.Euler(0, 0, 0));
+                        wallLeft = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x - .5f, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z), Quaternion.Euler(0, 0, 0), gridSquares[j, i].transform);
                     }
-
-                    //wallTop.transform.parent = gridSquare.transform;
-                    //wallRight.transform.parent = gridSquare.transform;
-                    //wallBottom.transform.parent = gridSquare.transform;
-                    //wallLeft.transform.parent = gridSquare.transform;
                 }
             }
-            /*      
-             *      if (i == 0 & currentXValue == 1)
+            /*    if (i == 0 & currentXValue == 1)
                   {
                       Instantiate(StartGridSquare, new Vector3(currentXValue * 1.1f, 0, i * 1.1f), Quaternion.identity);
                       i++;
