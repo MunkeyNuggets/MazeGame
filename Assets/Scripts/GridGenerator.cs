@@ -14,9 +14,13 @@ public class GridGenerator : MonoBehaviour
     //
     public int maxXValue;
     public int maxZValue;
-    private int currentXValue = 1;
     GameObject[,] gridSquares;
-    bool[] whatWallsExist;
+    //bool[] whatWallsExist;
+    bool visited = false;
+    //currentSquare is the current square selected by recursive backtracking 
+    GameObject[,] currentSquare;
+    
+
 
     GameObject wallTop;
     GameObject wallRight;
@@ -39,6 +43,7 @@ public class GridGenerator : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
         bool[] whatWallsExist = new bool[4] {true, true, true, true};
         gridSquares = new GameObject[maxXValue, maxZValue];
 
@@ -69,6 +74,7 @@ public class GridGenerator : MonoBehaviour
                     {
                         wallLeft = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x - .5f, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z), Quaternion.Euler(0, 0, 0), gridSquares[j, i].transform);
                     }
+
                 }
                 //checks if it has reached the desiered end position of the maze - This will change
                 else if (j == endingPoint.x && i == endingPoint.y)
@@ -113,21 +119,21 @@ public class GridGenerator : MonoBehaviour
                     }
                 }
             }
-            /*    if (i == 0 & currentXValue == 1)
+            /*    if (i == 0 & maxXValue == 1)
                   {
-                      Instantiate(StartGridSquare, new Vector3(currentXValue * 1.1f, 0, i * 1.1f), Quaternion.identity);
+                      Instantiate(StartGridSquare, new Vector3(maxXValue * 1.1f, 0, i * 1.1f), Quaternion.identity);
                       i++;
                   }
 
-                  if ((i == (maxZValue - 1)) & currentXValue == maxXValue)
+                  if ((i == (maxZValue - 1)) & maxXValue == maxXValue)
                   {
-                      Instantiate(FinishGridSquare, new Vector3(currentXValue * 1.1f, 0, i * 1.1f), Quaternion.identity);
+                      Instantiate(FinishGridSquare, new Vector3(maxXValue * 1.1f, 0, i * 1.1f), Quaternion.identity);
                       i++;
                   }
-                  if ((i == (maxZValue)) & (currentXValue != maxXValue))
+                  if ((i == (maxZValue)) & (maxXValue != maxXValue))
                   {
                       i = 0;
-                      currentXValue++;
+                      maxXValue++;
                   }
               */
         }
