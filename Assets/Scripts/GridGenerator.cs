@@ -16,9 +16,10 @@ public class GridGenerator : MonoBehaviour
     public int maxZValue;
     GameObject[,] gridSquares;
     //bool[] whatWallsExist;
+    //any square that hasn't been visited will have a bool of false
     bool visited = false;
     //currentSquare is the current square selected by recursive backtracking 
-    GameObject[,] currentSquare;
+    GameObject currentSquare;
     
 
 
@@ -46,7 +47,7 @@ public class GridGenerator : MonoBehaviour
 
         bool[] whatWallsExist = new bool[4] {true, true, true, true};
         gridSquares = new GameObject[maxXValue, maxZValue];
-
+        currentSquare = gridSquares[0,0];
         //takes the value given x and loops until it reaches the end
         for (int i = 0; i < maxZValue; i++)
         {
