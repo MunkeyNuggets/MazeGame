@@ -7,7 +7,7 @@ public class GridGenerator : MonoBehaviour
 
     public GameObject gridSquare;
     public GameObject StartGridSquare;
-    //TODO change this so that there a collectables rather than 1 set end zone
+    //TODO change this so that they're a collectables rather than 1 set end zone
     public GameObject FinishGridSquare;
     //bool[] walls;
     public GameObject wall;
@@ -145,5 +145,6 @@ public class GridGenerator : MonoBehaviour
     void Update()
     {
 
+        //TODO I think the bool for the walls needs to be here?? 
     }
 }
