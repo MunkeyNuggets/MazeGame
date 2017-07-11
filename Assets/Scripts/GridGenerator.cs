@@ -13,7 +13,7 @@ public class GridGenerator : MonoBehaviour
     public int maxZValue;
     int i = 0;
     int j = 0;
-    bool[] whatWallsExist;
+    bool[,,] whatWallsExist;
     bool visited = false;
     GameObject[,] gridSquares;
     GameObject currentSquare;
@@ -29,10 +29,10 @@ public class GridGenerator : MonoBehaviour
 
     void Start()
     {
+        whatWallsExist = new bool [maxXValue, maxZValue, 4];
         gridSquares = new GameObject[maxXValue, maxZValue];
         Grid();
         BackTracking();
-
     }
 
     void Update()
@@ -42,7 +42,7 @@ public class GridGenerator : MonoBehaviour
 
     void Grid()
     {
-        bool[] whatWallsExist = new bool[4] { true, true, true, true };
+       // bool[] whatWallsExist = new bool[4] { true, true, true, true };
         //takes the value given x and loops until it reaches the end
         for (i = 0; i < maxZValue; i++)
         {
@@ -54,19 +54,19 @@ public class GridGenerator : MonoBehaviour
                 {
                     //adds the current x,y of the grid tile to an array
                     gridSquares[j, i] = Instantiate(StartGridSquare, new Vector3(j * 1, 0, i * 1), Quaternion.identity);
-                    if (whatWallsExist[0])
+                    if (whatWallsExist[j, i, 0])
                     {
                         wallTop = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z + .5f), Quaternion.Euler(0, 90, 0), gridSquares[j, i].transform);
                     }
-                    if (whatWallsExist[1])
+                    if (whatWallsExist[j, i, 1])
                     {
                         wallRight = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x + .5f, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z), Quaternion.Euler(0, 0, 0), gridSquares[j, i].transform);
                     }
-                    if (whatWallsExist[2])
+                    if (whatWallsExist[j, i, 2])
                     {
                         wallBottom = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z - .5f), Quaternion.Euler(0, 90, 0), gridSquares[j, i].transform);
                     }
-                    if (whatWallsExist[3])
+                    if (whatWallsExist[j, i, 3])
                     {
                         wallLeft = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x - .5f, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z), Quaternion.Euler(0, 0, 0), gridSquares[j, i].transform);
                     }
@@ -76,19 +76,19 @@ public class GridGenerator : MonoBehaviour
                 else if (j == endingPoint.x && i == endingPoint.y)
                 {
                     gridSquares[j, i] = Instantiate(FinishGridSquare, new Vector3(j * 1, 0, i * 1), Quaternion.identity);
-                    if (whatWallsExist[0])
+                    if (whatWallsExist[j, i, 0])
                     {
                         wallTop = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z + .5f), Quaternion.Euler(0, 90, 0), gridSquares[j, i].transform);
                     }
-                    if (whatWallsExist[1])
+                    if (whatWallsExist[j, i, 1])
                     {
                         wallRight = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x + .5f, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z), Quaternion.Euler(0, 0, 0), gridSquares[j, i].transform);
                     }
-                    if (whatWallsExist[2])
+                    if (whatWallsExist[j, i, 2])
                     {
                         wallBottom = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z - .5f), Quaternion.Euler(0, 90, 0), gridSquares[j, i].transform);
                     }
-                    if (whatWallsExist[3])
+                    if (whatWallsExist[j, i, 3])
                     {
                         wallLeft = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x - .5f, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z), Quaternion.Euler(0, 0, 0), gridSquares[j, i].transform);
                     }
@@ -97,19 +97,20 @@ public class GridGenerator : MonoBehaviour
                 {
 
                     gridSquares[j, i] = Instantiate(gridSquare, new Vector3(j * 1, 0, i * 1), Quaternion.identity);
-                    if (whatWallsExist[0])
+                    //TODO bool visited = false;
+                    if (whatWallsExist[j, i, 0])
                     {
                         wallTop = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z + .5f), Quaternion.Euler(0, 90, 0), gridSquares[j, i].transform);
                     }
-                    if (whatWallsExist[1])
+                    if (whatWallsExist[j, i, 1])
                     {
                         wallRight = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x + .5f, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z), Quaternion.Euler(0, 0, 0), gridSquares[j, i].transform);
                     }
-                    if (whatWallsExist[2])
+                    if (whatWallsExist[j, i, 2])
                     {
                         wallBottom = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z - .5f), Quaternion.Euler(0, 90, 0), gridSquares[j, i].transform);
                     }
-                    if (whatWallsExist[3])
+                    if (whatWallsExist[j, i, 3])
                     {
                         wallLeft = Instantiate(wall, new Vector3(gridSquares[j, i].transform.position.x - .5f, gridSquares[j, i].transform.position.y + .5f, gridSquares[j, i].transform.position.z), Quaternion.Euler(0, 0, 0), gridSquares[j, i].transform);
                     }
@@ -120,8 +121,6 @@ public class GridGenerator : MonoBehaviour
     void BackTracking()
     {
         currentSquare = gridSquares[0, 0];
-            Debug.Log(currentSquare);
-            visited = true;
             currentSquare.GetComponent<Renderer>().material = visitedMat;
     }
 }
